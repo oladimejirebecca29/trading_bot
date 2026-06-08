@@ -1,11 +1,20 @@
-import time, hmac, hashlib, requests
+import time
+import hmac
+import hashlib
+import requests
+import os # 1. Import os
 from urllib.parse import urlencode
+from dotenv import load_dotenv # 2. Import load_dotenv
+
+# 3. Load variables from the .env file
+load_dotenv()
 
 class BinanceClient:
-    def __init__(self, api_key, secret_key):
+    def __init__(self): # 4. Remove api_key and secret_key arguments
         self.base_url = "https://testnet.binancefuture.com"
-        self.api_key = api_key
-        self.secret_key = secret_key
+        # 5. Fetch keys from the environment
+        self.api_key = os.getenv("BINANCE_API_KEY")
+        self.secret_key = os.getenv("BINANCE_SECRET_KEY")
 
     def send_request(self, params):
         params['timestamp'] = int(time.time() * 1000)

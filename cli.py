@@ -15,8 +15,8 @@ def main():
 
     try:
         validate_order(args)
-        # INSERT YOUR KEYS HERE
-        client = BinanceClient("API_KEY", "SECRET_KEY")
+        # UPDATED: No need to pass keys here anymore!
+        client = BinanceClient() 
         params = prepare_order(args.symbol, args.side, args.type, args.qty, args.price)
         
         logger.info(f"Request: {params}")
